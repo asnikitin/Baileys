@@ -373,8 +373,6 @@ export default (
 				fromJSON(json)
 			}
 		},
-		getLabels: (jid: string) => {
-			return chats.get(jid).labels;
-		}
+		getLabels: (jid: string) => chats.get(jid)?.labels ?? [],
 	}
 }
