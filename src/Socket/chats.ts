@@ -701,7 +701,11 @@ export const makeChatsSocket = (config: SocketConfig) => {
 	}
 
 	const setLabels = (jids: string[], labels: string[], labeled = true) => {
-		return Promise.all(jids.map(jid => Promise.all(labels.map(label => chatModify({ label, labeled }, jid)))))
+		return jids.reduce((acc, jid) => acc.then(() => {
+			return labels.reduce((nextAcc, label) => nextAcc.then(() => {
+				return chatModify({ label, labeled }, jid)
+			}), Promise.resolve())
+		}), Promise.resolve());
 	}
 
 	/**
