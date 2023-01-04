@@ -3492,6 +3492,9 @@ export namespace proto {
 
         /** Conversation lidJid */
         lidJid?: (string|null);
+
+        /** Conversation labels */
+        labels?: string[];
     }
 
     /** Represents a Conversation. */

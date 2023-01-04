@@ -241,6 +241,25 @@ export default (
 				}
 			}
 		})
+
+		ev.on('chats.label.set', ({ jid, label, labeled }) => {
+			chats.update(jid, chat => {
+				if (!labeled) {
+					if (chat.labels) {
+						chat.labels = chat.labels.filter(item => item !== label);
+						return;
+					}
+					return;
+				}
+				if (chat.labels) {
+					if (chat.labels.indexOf(label) === -1) {
+						chat.labels = [...chat.labels, label];
+						return;
+					}
+				}
+				chat['labels'] = [label];
+			})
+		})
 	}
 
 	const toJSON = () => ({
@@ -353,6 +372,9 @@ export default (
 				const json = JSON.parse(jsonStr)
 				fromJSON(json)
 			}
+		},
+		getLabels: (jid: string) => {
+			return chats.get(jid).labels;
 		}
 	}
 }

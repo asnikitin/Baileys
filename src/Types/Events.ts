@@ -8,6 +8,8 @@ import { GroupMetadata, ParticipantAction } from './GroupMetadata'
 import { MessageUpsertType, MessageUserReceiptUpdate, WAMessage, WAMessageKey, WAMessageUpdate } from './Message'
 import { ConnectionState } from './State'
 
+type TChatsLabelSet = { jid: string, label: string, labeled: boolean }
+
 export type BaileysEventMap = {
     /** connection state has been updated -- WS closed, opened, connecting etc. */
 	'connection.update': Partial<ConnectionState>
@@ -26,6 +28,8 @@ export type BaileysEventMap = {
     'chats.update': ChatUpdate[]
     /** delete chats with given ID */
     'chats.delete': string[]
+    'chats.label.set': TChatsLabelSet
+
     /** presence of contact in a chat updated */
     'presence.update': { id: string, presences: { [participant: string]: PresenceData } }
 

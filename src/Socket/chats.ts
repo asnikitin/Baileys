@@ -700,6 +700,10 @@ export const makeChatsSocket = (config: SocketConfig) => {
 		return appPatch(patch)
 	}
 
+	const setLabels = (jids: string[], labels: string[], labeled = true) => {
+		return Promise.all(jids.map(jid => Promise.all(labels.map(label => chatModify({ label, labeled }, jid)))))
+	}
+
 	/**
 	 * queries need to be fired on connection open
 	 * help ensure parity with WA Web
@@ -859,6 +863,7 @@ export const makeChatsSocket = (config: SocketConfig) => {
 		updateBlockStatus,
 		getBusinessProfile,
 		resyncAppState,
-		chatModify
+		chatModify,
+		setLabels,
 	}
 }

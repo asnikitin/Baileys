@@ -83,6 +83,7 @@ export type ChatModification =
         lastMessages: LastMessageList
     }
     | { delete: true, lastMessages: LastMessageList }
+    | { label: string, labeled: boolean }
 
 export type InitialReceivedChatsState = {
     [jid: string]: {
