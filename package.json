@@ -23,6 +23,7 @@
     "build:docs": "typedoc",
     "build:tsc": "tsc",
     "example": "node --inspect -r ts-node/register Example/example.ts",
+    "example:dev": "nodemon --watch src --watch Example Example/example.ts",
     "gen:protobuf": "sh WAProto/GenerateStatics.sh",
     "lint": "eslint ./src --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "eslint ./src --fix --ext .js,.ts,.jsx,.tsx"
@@ -84,10 +85,11 @@
     "jest": "^27.0.6",
     "jimp": "^0.16.1",
     "link-preview-js": "^3.0.0",
+    "nodemon": "^2.0.20",
     "qrcode-terminal": "^0.12.0",
     "sharp": "^0.30.5",
     "ts-jest": "^27.0.3",
-    "ts-node": "^10.8.1",
+    "ts-node": "^10.9.1",
     "typedoc": "^0.22.0",
     "typescript": "^4.0.0"
   }
